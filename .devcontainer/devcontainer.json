@@ -1,0 +1,24 @@
+{
+    "name": "vscode-move-photos",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "bierner.markdown-preview-github-styles",
+        "davidanson.vscode-markdownlint",
+        "vscodevim.vim",
+        "redhat.vscode-yaml",
+        "tim-koehler.helm-intellisense",
+        "casualjim.gotemplate"
+    ],
+    "postCreateCommand": "/usr/local/bin/setup-container",
+    "remoteUser": "vscode",
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        "source=${env:HOME}/.kube/config,target=/home/vscode/.kube/hostconfig,type=bind",
+        "source=${env:HOME}/.docker/config.json,target=/home/vscode/.docker/hostconfig.json,type=bind",
+        "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
+	]
+}
